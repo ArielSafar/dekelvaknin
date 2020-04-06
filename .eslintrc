@@ -1,0 +1,62 @@
+{
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": "./tsconfig.json"
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    ],
+    "rules": {
+        "curly": [
+            "error",
+            "all"
+        ],
+        "@typescript-eslint/no-empty-function": "warn",
+        "@typescript-eslint/unbound-method": "off",
+        "@typescript-eslint/type-annotation-spacing": "warn",
+        "object-curly-spacing": ["warn", "always", { "arraysInObjects": true }],
+        "@typescript-eslint/explicit-member-accessibility": [
+            "warn",
+            {
+                "accessibility": "explicit",
+                "overrides": {
+                    "accessors": "explicit",
+                    "constructors": "no-public",
+                    "methods": "explicit",
+                    "properties": "off",
+                    "parameterProperties": "explicit"
+                }
+            }
+        ],
+        "@typescript-eslint/interface-name-prefix": [
+            "warn",
+            {
+                "prefixWithI": "always"
+            }
+        ],
+        "function-call-argument-newline": [
+            "error",
+            "consistent"
+        ],
+        "max-len": [
+            "error",
+            {
+                "code": 120,
+                "ignoreUrls": true
+            }
+        ],
+        "no-confusing-arrow": [
+            "error",
+            {
+                "allowParens": false
+            }
+        ],
+        "no-mixed-operators": "error"
+    }
+}
