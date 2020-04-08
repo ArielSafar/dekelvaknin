@@ -1,2 +1,2 @@
-# sick-skeleton
+# Dekel Discord Bot
 

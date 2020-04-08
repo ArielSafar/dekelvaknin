@@ -1,9 +1,13 @@
 
+import bodyParser from 'body-parser';
 import 'reflect-metadata';
 import { install } from 'source-map-support';
 import * as pkg from './package.json';
 import { DiscordServer } from './src/APIs/Discord';
+import { RESTServer } from './src/APIs/REST';
 import config from './src/common/config/config';
+import { IServer } from './src/common/interfaces';
+import HealthService from './src/common/system/components/health.service';
 import { DekelGeneral } from './src/services/dekel/commands/dekel.general';
 import { DekelGreedings } from './src/services/dekel/commands/dekel.greetings';
 install();
@@ -14,18 +18,18 @@ const _sortControllers = (controllers: any[]): any[] =>
 const server = async (): Promise<void> => {
     await config.init(pkg.name); // TODO: use @sick/sick-config
 
-    // const restServer: IServer = new RESTServer({
-    //     port: 8080,
-    //     middlewares: [
-    //         bodyParser.json({ limit: '10m' })
-    //     ],
-    //     dependencies: {
-    //         config: config,
-    //         healthService: new HealthService()
-    //     }
-    // });
+    const restServer: IServer = new RESTServer({
+        port: 8080,
+        middlewares: [
+            bodyParser.json({ limit: '10m' })
+        ],
+        dependencies: {
+            config: config,
+            healthService: new HealthService()
+        }
+    });
 
-    // restServer.start();
+    restServer.start();
     const dekelCommands = new DekelGeneral();
     const dekelGreedings = new DekelGreedings();
 
@@ -43,7 +47,7 @@ const server = async (): Promise<void> => {
     ]);
 
     const discord = new DiscordServer(controllers);
-    discord.start('Njk0MjIzNjQ5MDE1NzI2MTcw.XoIjHA.2PCtFVHlZcqtjT4zkVlnn6XUvqc');
+    discord.start(process.env.BOT_KEY);
 }
 
 server();
