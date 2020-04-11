@@ -1,8 +1,8 @@
 import { IServer, ICommandDefinition } from '../../common/interfaces';
-import Discord, { Message } from 'discord.js';
+import { Client, Message } from 'discord.js';
 
 export class DiscordServer implements IServer {
-    private bot: any;
+    private bot: Client;
     private controllers: any[];
 
     constructor(controllers: any[]) {
@@ -11,15 +11,15 @@ export class DiscordServer implements IServer {
     }
 
     public start(token: string): void {
-        this.bot = new Discord.Client();
+        this.bot = new Client();
         this.bot.login(token);
 
         this.bot.on('ready', () => console.log(`Logged in as ${this.bot.user.tag}!`));
 
-        this.bot.on('message', (message: Message) => { this.dispachAction(message); });
+        this.bot.on('message', (message: Message) => { this.dispachAction(message, this.bot); });
     }
 
-    private dispachAction(message: Message): void {
+    private dispachAction(message: Message, bot: Client): void {
         let messageContent: string = message.content.trim();
         const controller = this.controllers.find(controller => messageContent.startsWith(controller.prefix));
 
@@ -38,6 +38,6 @@ export class DiscordServer implements IServer {
         const additionalParameter = messageContent.substring(command.command.length, messageContent.length).trim();
 
         console.log(`Dispatching ${command.methodName}`)
-        controller.instance[command.methodName](message, additionalParameter);
+        controller.instance[command.methodName](message, bot, additionalParameter);
     }
 }

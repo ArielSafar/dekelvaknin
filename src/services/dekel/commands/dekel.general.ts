@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Client } from "discord.js";
 import { DiscordController } from "../../../common/abstracts/discord.controller";
 import { Command } from "../../../common/decorators/command";
 import { Controller } from "../../../common/decorators/controller";
@@ -9,6 +9,20 @@ export class DekelGeneral extends DiscordController {
     @Command('קידומת')
     public prefix(msg: Message): void {
         msg.reply(`הקידומת שלי היא ${this.getPrefixOf(DekelGeneral)}`);
+    }
+
+    @Command('נמנם!')
+    public nap(msg: Message, bot: Client): void {
+        bot.user.setAFK(true);
+        bot.user.setActivity('מנמנם');
+        bot.user.setStatus('dnd')
+    }
+
+    @Command('קום!')
+    public wakeup(msg: Message, bot: Client): void {
+        bot.user.setAFK(false);
+        bot.user.setActivity('היום יום גשום!');
+        bot.user.setStatus('online')
     }
 
     @Command('פינג')
@@ -23,7 +37,7 @@ export class DekelGeneral extends DiscordController {
 
     @Command('סרטון')
     public sendDekelVid(msg: Message): void {
-        msg.reply('https://www.youtube.com/watch?v=8_fAWfXY5tk');
+        msg.channel.send('https://www.youtube.com/watch?v=8_fAWfXY5tk');
     }
 
     @Command('סרטן')
