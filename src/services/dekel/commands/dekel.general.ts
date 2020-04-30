@@ -57,7 +57,7 @@ export class DekelGeneral extends DiscordController {
 
     @Command('אצבע')
     public finger(msg: Message): void {
-        msg.reply('https://www.youtube.com/watch?v=mGXRmho2zP8');
+        msg.reply('https://www.youtube.com/watch?v=7e96htHNCjM');
     }
 
     @Command('יומולדת')

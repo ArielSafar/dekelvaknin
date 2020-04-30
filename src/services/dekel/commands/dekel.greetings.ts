@@ -26,6 +26,13 @@ export class DekelGreedings extends DiscordController {
         this.playYoutubeURL(messgae, 'https://www.youtube.com/watch?v=VW-y7DJftcA');
     }
 
+
+    @Command('יא תחת')
+    public yaTahat(messgae: Message): void {
+        this.playYoutubeURL(messgae, 'https://www.youtube.com/watch?v=Qeq_bd46BXY');
+    }
+
+
     @Command('')
     @Command('-ע')
     @Command('--עזרה')
