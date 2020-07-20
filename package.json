@@ -14,7 +14,7 @@
     "express-openapi": "^6.0.0",
     "ffmpeg-static": "^4.0.1",
     "graphql": "^14.6.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "reflect-metadata": "^0.1.13",
     "source-map-support": "^0.5.16",
     "swagger-ui-express": "^4.1.3",
