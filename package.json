@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
-    "@discordjs/opus": "^0.1.0",
+    "@discordjs/opus": "^0.8.0",
     "@types/graphql": "^14.5.0",
     "@types/ws": "^7.2.3",
     "body-parser": "^1.19.0",
